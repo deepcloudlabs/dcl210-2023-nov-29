@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Configuration;
 @EnableCaching
 public class CacheConfig {
 	@Bean
-	public CacheManager cacheManager() {
+	CacheManager cacheManager() {
 		var cacheManager = new SimpleCacheManager();
 		var addCache = new ConcurrentMapCache("add-cache");
 		var calculatorCache = new ConcurrentMapCache("calculator");

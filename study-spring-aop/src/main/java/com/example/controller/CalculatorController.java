@@ -18,8 +18,8 @@ public class CalculatorController {
 	private ArithmeticCalculator calculator;
 	
 	public CalculatorController(ArithmeticCalculator calculator) {
-		System.err.println("CalculatorController");
 		this.calculator = calculator;
+		System.err.println(calculator.getClass());
 	}
 
 	@PostMapping
