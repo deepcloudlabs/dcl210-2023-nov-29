@@ -1,6 +1,7 @@
 package com.example;
 
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 public class Exercise02 {
@@ -28,6 +29,6 @@ class C {
 			System.out.println("%s runs gun()...".formatted(Thread.currentThread().getName()));
 			try {TimeUnit.SECONDS.sleep(5);}catch(Exception e) {}
 			return 42;			
-		});
+		},Executors.newFixedThreadPool(10));
 	}
 }

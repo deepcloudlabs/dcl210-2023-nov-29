@@ -1,7 +1,5 @@
 package com.example;
 
-import java.util.LinkedList;
-import java.util.concurrent.ForkJoinPool;
 import java.util.function.Function;
 
 import com.example.dao.InMemoryWorldDao;
@@ -9,6 +7,7 @@ import com.example.domain.Country;
 
 public class Exercise01 {
 	// -XX:+UnlockDiagnosticVMOptions -XX:+PrintFlagsFinal
+	// -Djava.util.concurrent.ForkJoinPool.common.parallelism=6
 	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 		// Stream API (processing) -> Collection API (storage)
@@ -34,6 +33,7 @@ public class Exercise01 {
 		var logicalProcessors = Runtime.getRuntime().availableProcessors();
 		var parallelism = System.getProperty("java.util.concurrent.ForkJoinPool.common.parallelism");
 		System.out.println(parallelism);
+		
 		var continents =
 		countries.stream() // creates a new pipeline!
 		         .parallel() // parallel pipeline => ForkJoinFramework -> ForkJoinPool -> Job Stealing Algorithm

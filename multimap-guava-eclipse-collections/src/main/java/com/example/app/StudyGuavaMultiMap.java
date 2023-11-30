@@ -20,7 +20,7 @@ public class StudyGuavaMultiMap {
 		Multimap<String, Integer> areaCodes = ArrayListMultimap.create();
 		areaCodes.put("istanbul", 212);
 		areaCodes.put("istanbul", 216);
-		System.out.println(areaCodes);
+		System.out.println(areaCodes.get("istanbul"));
 	}
 
 }

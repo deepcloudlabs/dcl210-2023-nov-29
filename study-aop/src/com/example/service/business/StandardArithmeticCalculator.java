@@ -1,7 +1,11 @@
 package com.example.service.business;
 
+import com.example.aspect.Audit;
+import com.example.aspect.Cache;
+import com.example.aspect.Profile;
 import com.example.service.ArithmeticCalculator;
 
+@Cache
 public class StandardArithmeticCalculator implements ArithmeticCalculator {
 
 	@Override
@@ -11,11 +15,13 @@ public class StandardArithmeticCalculator implements ArithmeticCalculator {
 	}
 
 	@Override
+	@Profile
 	public double sub(double x, double y) {
 		return x-y;
 	}
 
 	@Override
+	@Audit
 	public double mul(double x, double y) {
 		return x*y;
 	}

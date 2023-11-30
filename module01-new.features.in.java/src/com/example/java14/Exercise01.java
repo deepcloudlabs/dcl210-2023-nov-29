@@ -4,6 +4,7 @@ import java.util.List;
 
 public class Exercise01 {
 
+	@SuppressWarnings("unused")
 	public static void main(String[] args) {
 		var point1 = new Point(1,2);
 		var point2 = new Point(1,2);

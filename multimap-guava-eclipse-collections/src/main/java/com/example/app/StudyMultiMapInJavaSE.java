@@ -19,6 +19,7 @@ public class StudyMultiMapInJavaSE {
 		put(multimap, "austen", new Employee("1", "Kate", "Austen", 125_000.));
 		put(multimap, "austen", new Employee("2", "Kate", "Austen", 125_000.));
 		put(multimap, "sawyer", new Employee("3", "James", "Sawyer", 125_000.));
+		System.out.println(multimap);
 	}
 
 	public static <K, V> void put(Map<K, List<V>> map, K key, V employee) {
