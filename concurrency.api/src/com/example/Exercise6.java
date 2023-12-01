@@ -5,16 +5,18 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class Exercise6 {
 	public static void main(String[] args) {
-		var task = new AtomicTask();
+		var task = new Task();
 		var threads = new ArrayList<Thread>();
-		for (var i=0;i<4;++i) {
+		for (var i=0;i<8;++i) {
 			threads.add(new Thread(task));
 		}
+		long start = System.currentTimeMillis();
 		threads.forEach(Thread::start);
 		threads.forEach( thread -> {
 			try { thread.join(); } catch (InterruptedException e) {}
 		});
-		System.out.println(task.getCounter());
+		long stop = System.currentTimeMillis();
+		System.out.println("counter: %d @ %d.".formatted(task.getCounter(),(stop-start)));
 	}
 }
 
@@ -27,8 +29,8 @@ class Task implements Runnable {
 
 	@Override
 	public void run() {
-		for (var i = 0; i < 200_000; ++i)
-			synchronized (this) {
+		synchronized (this) {
+		for (var i = 0; i < 2_000_000; ++i)
 				counter++;				
 			}
 	}
@@ -46,7 +48,7 @@ class AtomicTask implements Runnable {
 	@Override
 	public void run() {
 		Thread.onSpinWait();
-		for (var i = 0; i < 200_000; ++i)
+		for (var i = 0; i < 2_000_000; ++i)
 			counter.incrementAndGet();				
 	}
 	
