@@ -1,15 +1,20 @@
 package com.example;
 
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.IntStream;
 
 public class Exercise02 {
 
 	public static void main(String[] args) {
+		// Thread Pool => ExecutorService
 //		var threadPool = Executors.newFixedThreadPool(10 * Runtime.getRuntime().availableProcessors());
-		var threadPool = Executors.newScheduledThreadPool(10);
-		IntStream.range(0, 1_000)
-		         .forEach( i -> threadPool.submit(() -> System.out.println("Hello World [%d]!".formatted(i))));
+		var threadPool = Executors.newSingleThreadScheduledExecutor();
+		IntStream.range(0, 10_000)
+		         .forEach( i -> { 
+		        	 try{TimeUnit.NANOSECONDS.sleep(1);}catch(Exception e) {} 
+		        	 threadPool.submit(() -> System.out.println("[%s] Hello World [%d]!".formatted(Thread.currentThread().getName(),i)));
+		         });
 		threadPool.shutdown();
 		/*
 Hello World [7]!
